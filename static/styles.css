@@ -1,0 +1,221 @@
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: VeraBd;
+    src: url('assets/VeraBd.ttf');
+}
+@font-face {
+    font-family: Vera;
+    src: url('assets/Vera.ttf');
+}
+
+body {
+    margin: 0;
+    font-family: Vera, sans-serif;
+    overflow-x: hidden;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+div {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+h1 {
+    font-family: VeraBd;
+    font-size: 2rem;
+    margin-bottom: 7rem;
+    margin-right: 20rem;
+}
+
+p {
+    font-family: Vera;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+p.highlight {
+    font-family: VeraBd;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+p.side {
+    font-family: Vera;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+    text-align: left;
+}
+
+li {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Section One Styles */
+.section-one {
+    background: #0052CC;
+    color: #ffffff;
+}
+
+.section-one .image-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 11rem;
+}
+
+.section-one .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #ffffff;
+}
+
+
+.section-two {
+    background:#ffffff;
+    color: #333;
+}
+
+.section-two h1,
+.section-two p.highlight,
+.section-two ul li {
+    color: #333;
+}
+
+.section-three {
+    background:#e4e4e7;
+    color: #333;
+}
+
+.section-three .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+}
+
+.section-three .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Container adjustments */
+.container {
+    max-width: 65%;
+    margin: 0 auto;
+}
+
+.video-container {
+    position: relative;
+    width: 50%; 
+    height: 60%;
+    overflow: hidden;
+    border-radius: 1rem; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    justify-content: space-between;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none; /* El iframe está oculto inicialmente */
+}
+
+.video-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(1.45); /* Ajusta el video al centro */
+    border: none; /* Elimina los bordes del iframe */
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.play-button:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-container.active iframe {
+    display: block; /* Muestra el iframe al hacer clic */
+}
+
+.video-container.active .play-button {
+    display: none; /* Oculta el botón de play */
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 70%;
+    width: 90%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.text-content {
+    flex: 1;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+
+

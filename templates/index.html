@@ -3,10 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Estructura de Datos</title>
 </head>
 <body>
-    <div><h1>{{clase}}</h1> </div>
-    <div> {{seccion}}</div>
+    <!-- Section One -->
+    <section class="section-one">
+        <div class="container">
+            <h1>Estructura de Datos con Python</h1>
+            <p class="highlight">Al final de la lección tú sabrás:</p>
+            <ul>
+                <li>Explicar y entender claramente qué son las estructuras de datos</li>
+                <li>Cómo se utilizan las estructuras de datos en la industria actual</li>
+                <li>Cuáles son las estructuras de datos más utilizadas</li>
+                <li>Un panorama general del curso de Estructuras de Datos</li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='/assets/wave_bottom.svg') }}" alt="Wave bottom design">
+        </div>
+    </section>
+
+    <section class="section-two">
+        <div class="container">
+            <h1>Estructura de Datos</h1>
+            <p>
+                Las estructuras de datos son un método para organizar los datos 
+                en una computadora o sistema, de manera que se puedan manipular, 
+                recuperar y almacenar de forma eficiente.
+            </p>
+            <p>Las estructuras de datos son útiles para:</p>
+            <ul>
+                <li>Integrar y compartir datos de múltiples fuentes</li>
+                <li>Optimizar el almacenamiento de datos</li>
+                <li>Hacer que los datos sean accesibles para los usuarios</li>
+                <li>Reducir los esfuerzos de administración de datos</li>
+                <li>Mejorar la eficiencia de los programas</li>
+            </ul>
+            <p>
+                Las estructuras de datos pueden ser lineales o no lineales. Las estructuras lineales son aquellas en las que los datos 
+                se organizan en una lista ordenada, como las matrices, las listas, las colas y las pilas. 
+                Las estructuras no lineales son aquellas en las que cada elemento puede estar enlazado a cualquier otro componente.
+            </p>
+            </div>
+    </section>
+
+    <section class="section-three">
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='/assets/arrow.png') }}" alt="Wave bottom design">
+        </div>
+        <div class="content-wrapper">
+            <!-- Texto en la columna izquierda -->
+            <div class="text-content">
+                <h1>Ejemplos</h1>
+                <p class="side">
+                    En el ámbito de la informática, las estructuras de datos son aquellas que nos permiten, como desarrolladores, organizar la información de manera eficiente, y en definitiva diseñar la solución correcta para un determinado problema.
+                    <ul>
+                        <li>Arrays/Arreglos</li>
+                        <li>List/Listas Enlazadas</li>
+                        <li>HashMaps/HashTables</li>
+                        <li>Stacks</li>
+                        <li>Queues/Filas/Colas</li>
+                        <li>BinarySearchTree (BST)</li>
+                    </ul>
+                </p>
+            </div>
+    
+            <!-- Video en la columna derecha -->
+            <div class="video-container">
+                <iframe 
+            src="https://www.youtube.com/embed/4Bq7rI2t6vU?si=0RmehYiiE8FniXpJ&autoplay=1&controls=0" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+        <button class="play-button">▶</button>
+            </div>
+        </div>
+        <script>
+            const videoWrapper = document.querySelector('.video-container');
+            const playButton = document.querySelector('.play-button');
+            playButton.addEventListener('click', () => {
+                videoWrapper.classList.add('active');
+            });
+        </script>    
+    </section>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>
