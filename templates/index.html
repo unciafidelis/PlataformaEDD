@@ -33,19 +33,19 @@
 
     <section class="section-two">
         <div class="container">
-            <h1>Estructura de Datos</h1>
+            <h2>Estructura de Datos</h2>
             <p>
                 Las estructuras de datos son un método para organizar los datos 
-                en una computadora o sistema, de manera que se puedan manipular, 
-                recuperar y almacenar de forma eficiente.
+                en una computadora o sistema, de manera que se puedan <b>manipular</b>, 
+                <b>recuperar</b> y <b>almacenar</b> de forma eficiente.
             </p>
             <p>Las estructuras de datos son útiles para:</p>
             <ul>
-                <li>Integrar y compartir datos de múltiples fuentes</li>
-                <li>Optimizar el almacenamiento de datos</li>
-                <li>Hacer que los datos sean accesibles para los usuarios</li>
-                <li>Reducir los esfuerzos de administración de datos</li>
-                <li>Mejorar la eficiencia de los programas</li>
+                <li><b>Integrar</b> y compartir datos de múltiples fuentes</li>
+                <li><b>Optimizar</b> el almacenamiento de datos</li>
+                <li>Hacer que los datos sean <b>accesibles</b> para los usuarios</li>
+                <li><b>Reducir</b> los esfuerzos de administración de datos</li>
+                <li><b>Mejorar</b> la eficiencia de los programas</li>
             </ul>
             <p>
                 Las estructuras de datos pueden ser lineales o no lineales. Las estructuras lineales son aquellas en las que los datos 
@@ -62,7 +62,7 @@
         <div class="content-wrapper">
             <!-- Texto en la columna izquierda -->
             <div class="text-content">
-                <h1>Ejemplos</h1>
+                <h2>Ejemplos</h2>
                 <p class="side">
                     En el ámbito de la informática, las estructuras de datos son aquellas que nos permiten, como desarrolladores, organizar la información de manera eficiente, y en definitiva diseñar la solución correcta para un determinado problema.
                     <ul>
@@ -79,7 +79,7 @@
             <!-- Video en la columna derecha -->
             <div class="video-container">
                 <iframe 
-            src="https://www.youtube.com/embed/4Bq7rI2t6vU?si=0RmehYiiE8FniXpJ&autoplay=1&controls=0" 
+            src="https://www.youtube.com/embed/4Bq7rI2t6vU?si=0RmehYiiE8FniXpJ&controls=0" 
             title="YouTube video player" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -106,7 +106,7 @@
         I = 1
         
         # Bucle para pedir 50 calificaciones
-        while I <= 50:
+        while I <= 2:
             # Pedir al usuario que ingrese una calificación
             C = float(input(f"Ingrese la calificación {I}: "))
             
@@ -117,10 +117,10 @@
             I += 1
         
         # Calcular el promedio
-        PROM = AC / 50
+        PROM = AC / 2
         
         # Mostrar el resultado
-        print(f"El promedio de las 50 calificaciones es: {PROM}")
+        print(f"El promedio de las 2 calificaciones es: {PROM}")
         
         # Inicializar el contador de calificaciones mayores al promedio
         CONT = 0
@@ -129,8 +129,8 @@
         # Definir un valor para el promedio
         PROM = float(input("Ingrese el valor del promedio: "))
         
-        # Bucle para pedir 50 calificaciones
-        while I <= 50:
+        # Bucle para pedir 2 calificaciones
+        while I <= 2:
             # Pedir al usuario que ingrese una calificación
             C = float(input(f"Ingrese la calificación {I}: "))
             
@@ -144,28 +144,348 @@
         # Mostrar el resultado
         print(f"Cantidad de calificaciones mayores que el promedio: {CONT}")
               </pre>
-            </div>
+            
             <button class="copy-button" onclick="copyToClipboard()">
-              <span class="material-icons">content_copy</span>
-            </button>
+                <span class="material-icons">content_copy</span>
+              </button>
+            </div>
+            <div id="copyConfirmation" class="copy-confirmation">Copied to clipboard!</div>
+          
+            
+              <div id="outputBlock" class="output-block"></div>
+            
+              <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+              <script>
+                async function runCode() {
+                  const outputBlock = document.getElementById("outputBlock");
+                  outputBlock.textContent = "Running...";
+                  const codeBlock = document.getElementById("codeBlock").innerText;
+            
+                  // Limpiar la indentación extra
+                  const cleanedCode = removeExtraIndentation(codeBlock);
+            
+                  const pyodide = await loadPyodide();
+                  try {
+                    const result = await pyodide.runPython(cleanedCode);
+                    outputBlock.textContent = result || "Execution completed.";
+                  } catch (err) {
+                    outputBlock.textContent = `Error: ${err.message}`;
+                  }
+                }
+            
+                function copyToClipboard() {
+                  const codeBlock = document.getElementById("codeBlock").innerText;
+                    
+                  // Limpiar la indentación extra
+                  const cleanedCode = removeExtraIndentation(codeBlock);
+            
+                    navigator.clipboard.writeText(codeBlock).then(() => {
+                    const confirmation = document.getElementById("copyConfirmation");
+                    confirmation.classList.add("show");
+                    setTimeout(() => {
+                        confirmation.classList.remove("show");
+                    }, 2000);
+                    }).catch(err => {
+                        console.error("Failed to copy code: ", err);
+                    });
+                }
+            
+                function removeExtraIndentation(code) {
+                  // Dividir el código en líneas y eliminar indentación innecesaria
+                  const lines = code.split("\n");
+                  const minIndent = Math.min(
+                    ...lines
+                      .filter(line => line.trim().length > 0)
+                      .map(line => line.match(/^(\s*)/)[1].length)
+                  );
+            
+                  return lines.map(line => line.slice(minIndent)).join("\n");
+                }
+              </script>
+          
+    </section>
+    <section>
+        <div>
+            <textarea id="codeInput" placeholder="Write your Python code here..." rows="10" cols="50"></textarea>
+            <button onclick="runCode()">Run Code</button>
+        </div>
+          
+        <div id="inputContainer">
+            <!-- Dynamic input messages will be inserted here -->
           </div>
-          <div id="copyConfirmation" class="copy-confirmation">Copied to clipboard!</div>
+          
+          <div id="outputContainer">
+            <!-- Execution result will be shown here -->
+          </div>
         
+          <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
           <script>
-            function copyToClipboard() {
-              const codeBlock = document.getElementById("codeBlock").innerText;
-              navigator.clipboard.writeText(codeBlock).then(() => {
-                const confirmation = document.getElementById("copyConfirmation");
-                confirmation.classList.add("show");
-                setTimeout(() => {
-                  confirmation.classList.remove("show");
-                }, 2000);
-              }).catch(err => {
-                console.error("Failed to copy code: ", err);
+            async function runCode() {
+              const outputContainer = document.getElementById("outputContainer");
+              outputContainer.innerHTML = "<h2>Execution Result</h2>"; // Clear previous results
+          
+              const codeInput = document.getElementById("codeInput").value;
+          
+              const pyodide = await loadPyodide();
+          
+              // Store all input messages and user inputs
+              const inputMessages = [];
+          
+              // Modify the code to replace input() with prompt() and capture the input messages
+              const modifiedCode = codeInput.replace(/input\((["'].*?["']|\s*)\)/g, (_, promptText) => {
+                const userMessage = promptText.trim().replace(/^["']|["']$/g, ""); // Clean the prompt text
+                const inputPrompt = prompt(userMessage || "Enter input:"); // Prompt for input
+                inputMessages.push({ message: userMessage, input: inputPrompt }); // Store the message and input
+          
+                // Modify the return value to simulate float(input()) if applicable
+                if (promptText.includes("float")) {
+                  return `float("${inputPrompt || ""}")`; // Ensure it converts to float
+                }
+          
+                // For other types, return as string
+                return `"${inputPrompt || ""}"`; // Return the user input as a Python string
               });
+          
+              try {
+                // Capture standard output from Python execution
+                pyodide.runPython(`
+          import sys
+          from io import StringIO
+          sys.stdout = StringIO()
+          `);
+          
+                // Run the modified Python code
+                await pyodide.runPython(modifiedCode);
+                const result = pyodide.runPython("sys.stdout.getvalue().strip()");
+          
+                // Display only the print results in the output container
+                const resultItem = document.createElement("div");
+                resultItem.className = "result-item";
+                resultItem.textContent = result || "No output produced.";
+                outputContainer.appendChild(resultItem);
+              } catch (err) {
+                const errorItem = document.createElement("div");
+                errorItem.className = "result-item";
+                errorItem.style.color = "red";
+                errorItem.textContent = `Error: ${err.message}`;
+                outputContainer.appendChild(errorItem);
+              }
             }
+          </script>   
+    </section>
+    <section class="section-two">
+        <div class="container">
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h3>Epic</h3>
+                <span class="icon">+</span>
+            </div>
+            <div class="section-content">
+                <p>An <strong>epic</strong> represents a large body of work that can break down into smaller chunks.</p>
+                <p>👉 <strong>For example:</strong> You might create an epic for a redesign of a homepage, or writing and publishing a series of blog posts.</p>
+                <p>Known as "parent" issues, epics contain smaller issues within them. You and your team can decide what's a large body of work and what isn’t.</p>
+            </div>
+        </div>
+    
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h3>Story</h3>
+                <span class="icon">+</span>
+            </div>
+            <div class="section-content">
+                <p>A <strong>story</strong> is a single feature or functionality described from the end-user's perspective.</p>
+            </div>
+        </div>
+    
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h3>Task</h3>
+                <span class="icon">+</span>
+            </div>
+            <div class="section-content">
+                <p>A <strong>task</strong> is a unit of work that needs to be completed as part of a story or epic.</p>
+            </div>
+        </div>
+    
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h3>Bug</h3>
+                <span class="icon">+</span>
+            </div>
+            <div class="section-content">
+                <p>A <strong>bug</strong> represents a defect or error in the system that needs to be fixed.</p>
+            </div>
+        </div>
+    
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h3>Subtask</h3>
+                <span class="icon">+</span>
+            </div>
+            <div class="section-content">
+                <p>A <strong>subtask</strong> is a smaller, more manageable piece of work derived from a story or task.</p>
+            </div>
+        </div>
+    
+        <script>
+            function toggleSection(header) {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.icon');
+                
+                // Toggle content display
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    icon.textContent = '+'; // Change icon to +
+                } else {
+                    content.style.display = 'block';
+                    icon.textContent = '−'; // Change icon to -
+                }
+            }
+        </script>
+        </div>
+    </section>
+    <section>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="epics">EPICS</div>
+            <div class="tab" data-tab="stories">STORIES, TASKS, & BUGS</div>
+            <div class="tab" data-tab="subtasks">SUBTASKS</div>
+        </div>
+    
+        <div id="epics" class="content active">
+            <h3>Epics</h3>
+            <p>Epics appear in the Epics panel of the backlog. 
+                They may also appear on your board, depending on how your team set it up.
+            </p>
+            </div>
+    
+        <div id="stories" class="content">
+            <h3>Stories, Tasks, & Bugs</h3>
+            <p>Details about stories, tasks, and bugs will be displayed here.</p>
+        </div>
+    
+        <div id="subtasks" class="content">
+            <h3>Subtasks</h3>
+            <p>Details about subtasks will be displayed here.</p>
+        </div>
+    
+        <script>
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.content');
+    
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to the clicked tab
+                    tab.classList.add('active');
+    
+                    // Hide all content sections
+                    contents.forEach(content => content.classList.remove('active'));
+                    // Show the content corresponding to the clicked tab
+                    document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+                });
+            });
+        </script>
+        
+    </section>
+    <section>
+        <div class="description">
+            A continuación se muestra una representación visual de un arreglo unidimensional. Cada cuadro representa un elemento del arreglo, con su índice mostrado arriba y su valor dentro.
+          </div>
+          <div class="array-container"></div>
+            <div class="controls">
+    <input type="text" id="array-value" placeholder="Valor" maxlength="1">
+    <button id="add-btn">Agregar elemento</button>
+    <button id="remove-btn" disabled>Eliminar elemento</button>
+  </div>
+      
+          <script>
+            const arrayContainer = document.querySelector('.array-container');
+const addButton = document.getElementById('add-btn');
+const removeButton = document.getElementById('remove-btn');
+const inputValue = document.getElementById('array-value');
+let selectedElement = null;
+
+// Función para agregar un elemento
+function addElement() {
+  const value = inputValue.value.trim();
+  if (value === '') return;
+
+  const arrayItem = document.createElement('div');
+  arrayItem.classList.add('array-item');
+
+  // Crear el índice
+  const index = document.createElement('div');
+  index.classList.add('index');
+  index.textContent = arrayContainer.childElementCount;
+
+  // Crear el valor
+  const valueElement = document.createElement('div');
+  valueElement.classList.add('value');
+  valueElement.textContent = value;
+
+  // Agregar índice y valor al elemento del arreglo
+  arrayItem.appendChild(index);
+  arrayItem.appendChild(valueElement);
+
+  // Evento para seleccionar el elemento
+  arrayItem.addEventListener('click', () => {
+    clearSelection(); // Asegura que solo un elemento esté seleccionado
+    selectedElement = arrayItem;
+    arrayItem.style.backgroundColor = '#c0e8f0'; // Color de selección
+    removeButton.disabled = false; // Habilita el botón de eliminar
+  });
+
+  arrayContainer.appendChild(arrayItem);
+  inputValue.value = '';
+  inputValue.focus();
+  updateIndices();
+}
+
+// Limpia la selección actual
+function clearSelection() {
+  if (selectedElement) {
+    selectedElement.style.backgroundColor = '#f0f0f0'; // Color por defecto
+  }
+  selectedElement = null;
+  removeButton.disabled = true; // Deshabilita el botón de eliminar
+}
+
+// Evento para el botón "Agregar"
+addButton.addEventListener('click', addElement);
+
+// Evento para presionar la tecla "Enter" en el campo de entrada
+inputValue.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    addElement();
+    event.preventDefault(); // Evita el comportamiento predeterminado
+  }
+});
+
+// Evento para eliminar el elemento seleccionado
+removeButton.addEventListener('click', () => {
+  if (selectedElement) {
+    arrayContainer.removeChild(selectedElement);
+    clearSelection();
+    updateIndices();
+  }
+});
+
+// Actualizar los índices de los elementos en el arreglo
+function updateIndices() {
+  const items = document.querySelectorAll('.array-item');
+  items.forEach((item, index) => {
+    const indexElement = item.querySelector('.index');
+    indexElement.textContent = index;
+  });
+}
+
+
           </script>
     </section>
+
     <!-- JavaScript -->
     <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
     <script>
