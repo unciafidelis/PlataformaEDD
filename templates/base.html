@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+          <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
+    <title>Estructura de Datos</title>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="nav">
+                <a href="#introduccion" class="nav-item active">Introducción</a>
+                <a href="#soloTexto" class="nav-item">Solo Texto</a>
+                <a href="#textoMasVideo" class="nav-item">Texto y Video</a>
+                <a href="#toggleInfo" class="nav-item">Toggle Info</a>
+                <a href="#tabInfo" class="nav-item">Tab Info</a>
+                <a href="#arrayExample" class="nav-item">Array Example</a>
+                <a href="#pythonCodeToClip" class="nav-item">Python Code to Clip</a>
+                <a href="#pythonCodeToRun" class="nav-item">Python Code to Run</a>
+                <a href="#infoBox" class="nav-item">Info Box</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="introduccion">
+            {% block introduccion %}{% endblock %}
+        </section>
+    
+        <section id="soloTexto">
+            {% block soloTexto %}{% endblock %}
+        </section>
+    
+        <section id="textoMasVideo">
+            {% block textoMasVideo %}{% endblock %}
+        </section>
+    
+        <section id="toggleInfo">
+            {% block toggleInfo %}{% endblock %}
+        </section>
+    
+        <section id="tabInfo">
+            {% block tabInfo %}{% endblock %}
+        </section>
+    
+        <section id="arrayExample">
+            {% block arrayExample %}{% endblock %}
+        </section>
+    
+        <section id="pythonCodeToClip">
+            {% block pythonCodeToClip %}{% endblock %}
+        </section>
+    
+        <section id="pythonCodeToRun">
+            {% block pythonCodeToRun %}{% endblock %}
+        </section>
+    
+        <section id="infoBox">
+            {% block infoBox %}{% endblock %}
+        </section>  
+    </main>
+    <footer>
+        <p style="margin-left: 5rem;">&copy; 2025 Dr Alejandro Morgan. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/codeClipboard.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/pythonCodeRunner.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/arrayExplanation.js') }}"></script> 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/videoWrapper.js') }}"></script> 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/toggleSection.js') }}"></script> 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/tabsSection.js') }}"></script> 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mathKatex.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/activeNav.js') }}"></script>
+</body>
+</html>

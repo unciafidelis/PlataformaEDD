@@ -16,6 +16,52 @@ body {
     margin: 0;
     font-family: Vera, sans-serif;
     overflow-x: hidden;
+    display: block;
+}
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo transparente */
+    width: 100%;
+    z-index: 10;
+    font-size: small;
+    height: 4rem;
+}
+
+/* Barra de navegación */
+.nav {
+    font-family: Vera, sans-serif;
+    display: flex;
+    background-color: #0052CC; /* Fondo transparente */
+    width: 100%;
+}
+
+/* Elementos individuales del menú */
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 1.5rem; /* Ampliado el padding */
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    border-bottom: 3px solid transparent;
+    text-decoration: none; /* Quitar subrayado */
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Estilo para el elemento activo */
+.nav-item.active {
+    color: #eeeeee;
+    border-bottom: 3px solid #cccccc;
+}
+
+/* Efecto hover */
+.nav-item:hover {
+    color: #007bff;
 }
 
 section {

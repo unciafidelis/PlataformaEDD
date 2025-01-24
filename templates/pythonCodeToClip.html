@@ -1,0 +1,13 @@
+<section onload="myRender()">
+    <h2>Código de ejemplo</h2>
+    <div class="code-container">
+        <div class="code-scrollable">
+            <pre id="codeBlock"> {{ content }}</pre>
+            <button class="copy-button" onclick="copyToClipboard()">
+                <span class="material-icons">content_copy</span>
+            </button>
+        </div>
+    </div>
+    <div id="copyConfirmation" class="copy-confirmation">Copied to clipboard!</div>
+    <div id="outputBlock" class="output-block"></div>
+</section>
