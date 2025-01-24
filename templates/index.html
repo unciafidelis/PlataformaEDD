@@ -63,7 +63,7 @@
             <!-- Texto en la columna izquierda -->
             <div class="text-content">
                 <h2>Ejemplos</h2>
-                <p class="side">
+                <p>
                     En el ámbito de la informática, las estructuras de datos son aquellas que nos permiten, como desarrolladores, organizar la información de manera eficiente, y en definitiva diseñar la solución correcta para un determinado problema.
                     <ul>
                         <li>Arrays/Arreglos</li>
@@ -97,7 +97,7 @@
         </script>    
     </section>
     <section onload="myRender()">
-        
+        <h2>Código de ejemplo</h2>
         <div class="code-container">
             <div class="code-scrollable">
               <pre id="codeBlock">
@@ -206,65 +206,86 @@
     </section>
     <section>
         <div>
-            <textarea id="codeInput" placeholder="Write your Python code here..." rows="10" cols="50"></textarea>
-            <button onclick="runCode()">Run Code</button>
+            <textarea id="codeInput" placeholder="Ej. print('hola mundo')" rows="10" cols="50"></textarea>
+            <button onclick="runCode()"><span class="material-icons">
+                play_arrow
+                </span></button>
         </div>
           
         <div id="inputContainer">
             <!-- Dynamic input messages will be inserted here -->
           </div>
           
-          <div id="outputContainer">
+          <div class="container" id="outputContainer">
             <!-- Execution result will be shown here -->
           </div>
         
-          <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-
+        
           <script>
             async function runCode() {
               const outputContainer = document.getElementById("outputContainer");
-              outputContainer.innerHTML = "<h2>Execution Result</h2>"; // Clear previous results
+              outputContainer.innerHTML = "<h2>Resultado</h2>"; // Limpiar resultados previos
           
               const codeInput = document.getElementById("codeInput").value;
           
               const pyodide = await loadPyodide();
           
-              // Store all input messages and user inputs
-              const inputMessages = [];
+              // Variables para almacenar mensajes de input y respuestas del usuario
+              let inputIndex = 0;
+              const inputs = [];
+              const messages = [];
           
-              // Modify the code to replace input() with prompt() and capture the input messages
+              // Modificar el código Python para interceptar inputs
               const modifiedCode = codeInput.replace(/input\((["'].*?["']|\s*)\)/g, (_, promptText) => {
-                const userMessage = promptText.trim().replace(/^["']|["']$/g, ""); // Clean the prompt text
-                const inputPrompt = prompt(userMessage || "Enter input:"); // Prompt for input
-                inputMessages.push({ message: userMessage, input: inputPrompt }); // Store the message and input
-          
-                // Modify the return value to simulate float(input()) if applicable
-                if (promptText.includes("float")) {
-                  return `float("${inputPrompt || ""}")`; // Ensure it converts to float
-                }
-          
-                // For other types, return as string
-                return `"${inputPrompt || ""}"`; // Return the user input as a Python string
+                const userMessage = promptText.trim().replace(/^["']|["']$/g, "");
+                messages.push(userMessage || "Ingrese un dato:"); // Guardar el texto del input
+                return `__inputs[${inputIndex++}]`; // Sustituir con una variable de índice
               });
           
               try {
-                // Capture standard output from Python execution
+                // Pedir entradas al usuario antes de ejecutar el código
+                for (const message of messages) {
+                  const userInput = prompt(message); // Mostrar mensaje en cuadro de diálogo
+                  inputs.push(userInput || ""); // Almacenar la respuesta
+                }
+          
+                // Redirigir la salida estándar de Python
                 pyodide.runPython(`
           import sys
           from io import StringIO
-          sys.stdout = StringIO()
-          `);
+          sys.stdout = StringIO()  # Redirigir salida estándar
+          sys.stderr = StringIO()  # Redirigir salida de error
+                `);
           
-                // Run the modified Python code
+                // Pasar las entradas al entorno de ejecución Python
+                pyodide.globals.set("__inputs", inputs);
+          
+                // Ejecutar el código modificado
                 await pyodide.runPython(modifiedCode);
+          
+                // Capturar exclusivamente la salida de los print()
                 const result = pyodide.runPython("sys.stdout.getvalue().strip()");
           
-                // Display only the print results in the output container
-                const resultItem = document.createElement("div");
-                resultItem.className = "result-item";
-                resultItem.textContent = result || "No output produced.";
-                outputContainer.appendChild(resultItem);
+                // Mostrar solo el contenido de los print() en el contenedor de resultados
+                if (result) {
+                  result
+                    .split("\n")
+                    .forEach((line) => {
+                      // Ignorar cualquier línea que coincida con mensajes de input
+                      if (!messages.some((msg) => line.includes(msg))) {
+                        const resultItem = document.createElement("div");
+                        resultItem.className = "result-item";
+                        resultItem.textContent = line.trim(); // Mostrar línea de salida
+                        outputContainer.appendChild(resultItem);
+                      }
+                    });
+                } else {
+                  const noOutput = document.createElement("div");
+                  noOutput.textContent = "No hubo salida del programa.";
+                  outputContainer.appendChild(noOutput);
+                }
               } catch (err) {
+                // Manejar errores
                 const errorItem = document.createElement("div");
                 errorItem.className = "result-item";
                 errorItem.style.color = "red";
@@ -272,7 +293,13 @@
                 outputContainer.appendChild(errorItem);
               }
             }
-          </script>   
+          </script>
+          
+          
+          
+          
+          
+          
     </section>
     <section class="section-two">
         <div class="container">
@@ -485,6 +512,17 @@ function updateIndices() {
 
           </script>
     </section>
+
+<section>
+    <div class="info-box">
+        <span class="material-icons info-icon">info</span>
+        <div class="info-content">
+          <p>
+            You can't edit every field. The <strong>issue key</strong> stays the same so that you always have a unique way of identifying each issue. The <strong>Created</strong> and <strong>Updated</strong> fields generate automatically based on when you created the issue or last updated it, so you can't edit them.
+          </p>
+        </div>
+      </div>
+</section>
 
     <!-- JavaScript -->
     <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
