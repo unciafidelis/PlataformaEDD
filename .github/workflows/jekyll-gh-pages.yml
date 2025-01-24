@@ -1,4 +1,4 @@
-name: Deploy Flask Static Site to GitHub Pages
+name: Plataforma EDD
 
 on:
   push:
@@ -26,15 +26,6 @@ jobs:
     - name: Generate static HTML files
       run: |
         python app.py
-
-    - name: Upload static files
-      run: |
-        mv output/* .
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
-        git add .
-        git commit -m "Deploy static site"
-        git push --force
 
   deploy:
     runs-on: ubuntu-latest
