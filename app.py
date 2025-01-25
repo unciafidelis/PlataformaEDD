@@ -26,6 +26,10 @@ def run_code():
     except Exception as e:
         return jsonify({"output": f"Error: {str(e)}"}), 500
 
+@app.route("/arreglos")
+def arreglos():
+    return render_template("arreglos/arreglos.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
 

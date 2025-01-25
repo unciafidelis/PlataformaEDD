@@ -1,27 +1,50 @@
 <section>
-    
+    <h2>Clasificación de las estructuras de datos</h2>
     <div class="tabs">
-        <div class="tab active" data-tab="epics">EPICS</div>
-        <div class="tab" data-tab="stories">STORIES, TASKS, & BUGS</div>
-        <div class="tab" data-tab="subtasks">SUBTASKS</div>
+        <div class="tab active" data-tab="Primitivas">Primitivas</div>
+        <div class="tab" data-tab="noPrimitivas">No primitivas</div>
+        <div class="tab" data-tab="Lineales">Lineales</div>
+        <div class="tab" data-tab="noLineales">No lineales</div>
     </div>
 
-    <div id="epics" class="content active">
-        <h3>Epics</h3>
-        <p>Epics appear in the Epics panel of the backlog. 
-            They may also appear on your board, depending on how your team set it up.
-        </p>
-        </div>
-
-    <div id="stories" class="content">
-        <h3>Stories, Tasks, & Bugs</h3>
-        <p>Details about stories, tasks, and bugs will be displayed here.</p>
+    <div id="Primitivas" class="content">
+        
+        <p><b>Las estructuras de datos primitivas</b> son los tipos de datos básicos que los lenguajes de programación ofrecen por defecto:</p>
+        <ul>
+            <li>Enteros (int)</li>
+            <li>Caracteres (char)</li>
+            <li>Flotantes (float, double)</li>
+            <li>Booleanos (true/false)</li>
+        </ul>
     </div>
 
-    <div id="subtasks" class="content">
-        <h3>Subtasks</h3>
-        <p>Details about subtasks will be displayed here.</p>
+    <div id="noPrimitivas" class="content">
+        <p><b>Las estructuras de datos no primitivas</b> estas se basan en los tipos primitivos y ofrecen una organización más compleja.</p>
+        <ul>
+            <li>Lineales</li>
+            <li>No lineales</li>
+            <li>Tablas</li>
+        </ul>
     </div>
 
+    <div id="Lineales" class="content">
+        <p>En las estructuras de datos <b>lineales</b> los elementos se organizan de forma secuencial y estos pueden ser:</p>
+        <ul>
+            <li><b>Arreglos (Arrays)</b>: Colecciones de elementos del mismo tipo almacenados en posiciones contiguas.</li>
+            <li><b>Listas enlazadas</b>: Una colección de nodos donde cada nodo apunta al siguiente.</li>
+            <li><b>Pilas (Stacks)</b>: Siguen el principio LIFO (Último en entrar, primero en salir).</li>
+            <li><b>Colas (Queues)</b>: Siguen el principio FIFO (Primero en entrar, primero en salir).</li>
+        </ul>
+    </div>
+
+    <div id="noLineales" class="content">
+        <p>En las estructuras de datos <b>no lineales</b> los elementos se organizan en estructuras jerárquicas o relacionales. Estas pueden ser:</p>
+        <ul>
+            <li><b>Árboles</b>: Estructuras jerárquicas con un nodo raíz y nodos hijos.</li>
+            <li><b>Grafos</b>: Conjuntos de nodos conectados por aristas, que pueden ser dirigidos o no dirigidos.</li>
+            <li><b>Tablas</b>: Organizan los datos de forma estructurada para búsquedas rápidas. Las tablas hash utilizan una función hash (Una función hash es un algoritmo matemático que toma una entrada o tambien llamada llave/clave y la convierte en un valor de tamaño fijo, llamado código hash o digest) para acceder a los datos de manera eficiente.</li>
+        </ul>
+        <p></p>
+    </div>
     
 </section>

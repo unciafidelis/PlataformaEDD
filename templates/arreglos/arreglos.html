@@ -19,46 +19,36 @@
         <div class="nav-container">
             <div class="nav">
                 <a href="#introduccion" class="nav-item active">Introducción</a>
-                <a href="#soloTexto" class="nav-item">Explicación</a>
-                <a href="#textoMasVideo" class="nav-item">Ejemplos</a>
-                <a href="#pythonCodeToClip" class="nav-item">Código en python</a>
-                <a href="#pythonCodeToRun" class="nav-item">Ejecución de código python</a>
-                <a href="#infoBox" class="nav-item">Resumen</a>
+                <a href="#explicacion" class="nav-item">Arreglos</a>
+                <a href="#conceptos" class="nav-item">Conceptos básicos</a>
+                <a href="#arregloEjemplo" class="nav-item">Ejemplo de arreglo</a>
             </div>
         </div>
     </header>
     <main>
         <section id="introduccion">
-            {% block introduccion %}{% endblock %}
+            {% block introduccion %}
+                {% include "arreglos/introduccion.html" %}
+            {% endblock %}
         </section>
     
-        <section id="soloTexto">
-            {% block soloTexto %}{% endblock %}
+        <section id="explicacion">
+            {% block explicacion %}
+                {% include "arreglos/explicacion.html" %}
+            {% endblock %}
+        </section>
+    
+        <section id="conceptos">
+            {% block conceptos %}
+                {% include "arreglos/conceptosBasicos.html" %}
+            {% endblock %}
         </section>
 
-        <section id="tabInfo">
-            {% block tabInfo %}{% endblock %}
+        <section id="arregloEjemplo">
+            {% block arregloEjemplo %}
+                {% include "arreglos/arregloEjemplo.html" %}
+            {% endblock %}
         </section>
-    
-        <section id="textoMasVideo">
-            {% block textoMasVideo %}{% endblock %}
-        </section>
-    
-        <section id="pythonCodeToClip">
-            {% block pythonCodeToClip %}{% endblock %}
-        </section>
-    
-        <section id="pythonCodeToRun">
-            {% block pythonCodeToRun %}{% endblock %}
-        </section>
-    
-        <section id="infoBox">
-            {% block infoBox %}{% endblock %}
-            <div>
-                <a class=link href="{{ url_for('arreglos') }}">Siguiente tema: Arreglos</a>
-            </div>
-        </section> 
-        
     </main>
     <footer>
         <p style="margin-left: 5rem;">&copy; 2025 Dr Alejandro Morgan. Todos los derechos reservados.</p>
